@@ -1,0 +1,138 @@
+{% javascript %}
+
+	$( '.product-tabs-section .product-tabs--nav li > a' ).click( function( e ) {
+		e.preventDefault();
+		var $this = $( this );
+		var $tabActive = $this.attr('href');
+
+		$( '.product-tabs--nav li' ).removeClass( 'active' );
+		$this.parent().addClass('active');
+		$('.product-tabs--content .product-tabs--pane').removeClass('active').hide();
+		$( $tabActive ).addClass('active').show();
+	})
+
+{% endjavascript %}
+
+{%- assign limit = section.settings.limit -%}
+
+{% case section.settings.limit %}
+  {% when '2' %}
+    {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {%- assign product_image_size = '540x600' -%}
+  {% when '3' %}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {%- assign product_image_size = '345x550' -%}
+  {% when '4' %}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {%- assign product_image_size = '250x' -%}
+  {% when '5' %}
+    {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {%- assign product_image_size = '195x' -%}
+{% endcase %}
+
+<div class="container">
+{% if section.settings.title != blank %}
+	<div class="section-header text-center">
+		<h2>{{ section.settings.title }}</h2>
+	</div>
+{% endif %}
+
+<div class="product-tabs">
+	<ul class="product-tabs--nav clearfix">
+		{% for block in section.blocks limit: section.blocks.size %}
+			{%- assign collection = collections[block.settings.collection] -%}
+
+			<li{% if forloop.first == true %} class="active"{% endif %}><a href="#{{ collection.title | handleize }}-{{ forloop.index }}">{{ collection.title }}</a></li>
+		{% endfor %}
+	</ul>
+	<div class="product-tabs--content">
+		{% for block in section.blocks limit: section.blocks.size %}
+			{%- assign collection = collections[block.settings.collection] -%}
+			<div class="product-tabs--pane {% if forloop.first == true %}active{% endif %}" id="{{ collection.title | handleize }}-{{ forloop.index }}" {{ block.shopify_attributes }}>
+				{% if collection.all_products_count == 0 %}
+					<div class="center-xs">{{ 'product.empty' | t }}</div>
+				{% else %}
+					<div class="grid grid-uniform">
+						{% for product in collection.products limit: limit %}
+							<div class="grid__item {{ grid_item_width }}">
+								{% include 'product-card-grid', grid_image_width: product_image_size %}
+							</div>
+						{% endfor %}
+					</div>
+					{% if section.settings.show_view_all and collection.all_products_count != 0 %}
+						<div class="align--center">
+							<a class="btn btn-rounded btn-outline" href="{{ collection.url }}" target="_blank">
+								{{ 'collections.general.view_all' | t }}
+							</a>
+						</div>
+					{% endif %}
+				{% endif %}
+			</div>
+		{% endfor %}
+	</div>
+</div>
+</div>
+{% schema %}
+	{
+		"name": "Product tabs",
+		"class": "index-section product-tabs-section",
+		"max_blocks": 10,
+		"settings": [
+			{
+				"type": "text",
+				"id": "title",
+				"label": "Section heading",
+				"default": "Product Tabs"
+			},
+			{
+				"type": "checkbox",
+				"id": "show_view_all",
+				"label": "Show 'View all' button",
+				"default": false
+			},
+			{
+				"type": "select",
+				"id": "limit",
+				"label": "Limit product",
+				"default": "3",
+				"options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+			}
+		],
+		"blocks": [
+			{
+				"type": "collection",
+				"name": "Collection",
+				"settings": [
+					{
+						"type": "collection",
+						"id": "collection",
+						"label": "Collection"
+					}
+				]
+			}
+		],
+		"presets": [
+			{
+				"name": "Product tabs",
+				"category": "Product"
+			}
+		]
+	}
+{% endschema %}

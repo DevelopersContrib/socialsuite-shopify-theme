@@ -1,0 +1,410 @@
+<footer class="site-footer" role="contentinfo">
+  {% if section.blocks.size > 0 %}
+    <div class="site-footer__top">
+      <div class="container">
+        <div class="grid">
+          {% for block in section.blocks %}
+            {% case block.settings.width %}
+              {% when '16%' %}
+                {%- assign block_width = 'medium-up--one-sixth small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '300x300' -%}
+              {% when '20%' %}
+                {%- assign block_width = 'medium-up--one-fifth small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '350x350' -%}
+              {% when '25%' %}
+                {%- assign block_width = 'medium-up--one-quarter small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '400x400' -%}
+              {% when '33%' %}
+                {%- assign block_width = 'medium-up--one-third small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '450x450' -%}
+              {% when '50%' %}
+                {%- assign block_width = 'medium-up--two-quarters small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '600x600' -%}
+              {% when '66%' %}
+                {%- assign block_width = 'medium-up--two-thirds small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '720x720' -%}
+              {% when '75%' %}
+                {%- assign block_width = 'medium-up--three-quarters small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '810x810' -%}
+              {% when '80%' %}
+                {%- assign block_width = 'medium-up--eight-tenths small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '810x810' -%}
+              {% when '84%' %}
+                {%- assign block_width = 'medium-up--five-sixths small--one-half x-small--one-whole' -%}
+                {%- assign image_size = '810x810' -%}
+              {% when '100%' %}
+                {%- assign block_width = 'one-whole' -%}
+                {%- assign image_size = '1090x1090' -%}
+            {% endcase %}
+              <div class="grid__item {{ block_width }} footer__widget--{{ block.type }}" {{ block.shopify_attributes }}>
+                <div class="footer__widget-inner">
+                  {% case block.type %}
+                    {% when 'image' %}
+                      {% if block.settings.heading != blank %}
+                        <h3 class="footer-widget__title">{{ block.settings.heading | escape }}</h3>
+                      {% endif %}
+                      {% if block.settings.image != blank %}
+                        {{ block.settings.image | img_url: image_size, crop: 'top' | img_tag }}
+                      {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {% endif %}
+                    {% when 'html' %}
+                        {% if block.settings.heading != blank %}
+                          <h3 class="footer-widget__title">{{ block.settings.heading | escape }}</h3>
+                        {% endif %}
+                        {% if block.settings.html != blank %}
+                          {{ block.settings.html }}
+                        {% endif %}
+                    {% when 'menu' %}
+                      {% if block.settings.heading != blank %}
+                        <h3 class="footer-widget__title">{{ block.settings.heading | escape }}</h3>
+                      {% endif %}
+                      <div class="footer__menus">
+                        {%- assign footer_menus = block.settings.footer_menus -%}
+
+                        {% if linklists[footer_menus].links.size > 0 %}
+                          <ul>
+                            {% for link in linklists[footer_menus].links %}
+                              <li>
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      </div>
+                    {% when 'form' %}
+                      {% if block.settings.heading != blank %}
+                        <h3 class="footer-widget__title">{{ block.settings.heading | escape }}</h3>
+                      {% endif %}
+                      <p>{{ block.settings.content_above }}</p>
+                      {% include 'newsletter-form', action_link: block.settings.action_link, placeholder: block.settings.placeholder %}
+                      <p>{{ block.settings.content_below }}</p>
+                  {% endcase %}
+                </div>
+              </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% assign copyright = section.settings.copyright %}
+    {% if copyright != blank %}
+    <div class="site-footer__bottom">
+      <div class="container">
+        {%- assign footer_bottom_menus = section.settings.footer_bottom_menu -%}
+        {% if linklists[footer_bottom_menus].links.size > 0 %}
+          <div class="site-footer__bottom--menu">
+            <ul>
+              {% for link in linklists[footer_bottom_menus].links %}
+                <li>
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        {{ copyright }}
+      </div>
+    </div>
+     {% endif %}
+</footer>
+{% schema %}
+  {
+    "name": "Footer",
+    "max_blocks": 5,
+    "blocks": [
+      {
+        "type": "html",
+        "name": "Custom HTML",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "textarea",
+            "id": "html",
+            "label": "HTML",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "type": "select",
+            "id": "width",
+            "label": "Block width",
+            "default": "50%",
+            "options": [
+              {
+                "value": "16%",
+                "label": "16%"
+              },
+              {
+                "value": "20%",
+                "label": "20%"
+              },
+              {
+                "value": "25%",
+                "label": "25%"
+              },
+              {
+                "value": "33%",
+                "label": "33%"
+              },
+              {
+                "value": "50%",
+                "label": "50%"
+              },
+              {
+                "value": "66%",
+                "label": "66%"
+              },
+              {
+                "value": "75%",
+                "label": "75%"
+              },
+              {
+                "value": "80%",
+                "label": "80%"
+              },
+              {
+                "value": "84%",
+                "label": "84%"
+              },
+              {
+                "value": "100%",
+                "label": "100%"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "menu",
+        "name": "Custom Menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "link_list",
+            "id": "footer_menus",
+            "default": "footer",
+            "label": "Custom Menu"
+          },
+          {
+            "type": "select",
+            "id": "width",
+            "label": "Block width",
+            "default": "50%",
+            "options": [
+              {
+                "value": "16%",
+                "label": "16%"
+              },
+              {
+                "value": "20%",
+                "label": "20%"
+              },
+              {
+                "value": "25%",
+                "label": "25%"
+              },
+              {
+                "value": "33%",
+                "label": "33%"
+              },
+              {
+                "value": "50%",
+                "label": "50%"
+              },
+              {
+                "value": "66%",
+                "label": "66%"
+              },
+              {
+                "value": "75%",
+                "label": "75%"
+              },
+              {
+                "value": "80%",
+                "label": "80%"
+              },
+              {
+                "value": "84%",
+                "label": "84%"
+              },
+              {
+                "value": "100%",
+                "label": "100%"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "form",
+        "name": "Subscription Form",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "html",
+            "id": "content_above",
+            "label": "Content Above"
+          },
+          {
+            "type": "html",
+            "id": "content_below",
+            "label": "Content Below"
+          },
+          {
+            "type": "text",
+            "id": "action_link",
+            "label": "Action link",
+            "default": "#"
+          },
+          {
+            "type": "text",
+            "id": "placeholder",
+            "label": "Placeholder",
+            "default": "Enter your email"
+          },
+          {
+            "type": "select",
+            "id": "width",
+            "label": "Block width",
+            "default": "50%",
+            "options": [
+              {
+                "value": "16%",
+                "label": "16%"
+              },
+              {
+                "value": "20%",
+                "label": "20%"
+              },
+              {
+                "value": "25%",
+                "label": "25%"
+              },
+              {
+                "value": "33%",
+                "label": "33%"
+              },
+              {
+                "value": "50%",
+                "label": "50%"
+              },
+              {
+                "value": "66%",
+                "label": "66%"
+              },
+              {
+                "value": "75%",
+                "label": "75%"
+              },
+              {
+                "value": "80%",
+                "label": "80%"
+              },
+              {
+                "value": "84%",
+                "label": "84%"
+              },
+              {
+                "value": "100%",
+                "label": "100%"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Talk about your brand"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "width",
+            "label": "Block width",
+            "default": "50%",
+            "options": [
+              {
+                "value": "16%",
+                "label": "16%"
+              },
+              {
+                "value": "20%",
+                "label": "20%"
+              },
+              {
+                "value": "25%",
+                "label": "25%"
+              },
+              {
+                "value": "33%",
+                "label": "33%"
+              },
+              {
+                "value": "50%",
+                "label": "50%"
+              },
+              {
+                "value": "66%",
+                "label": "66%"
+              },
+              {
+                "value": "75%",
+                "label": "75%"
+              },
+              {
+                "value": "80%",
+                "label": "80%"
+              },
+              {
+                "value": "84%",
+                "label": "84%"
+              },
+              {
+                "value": "100%",
+                "label": "100%"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_bottom_menu",
+        "label": "Footer Menu"
+      },
+      {
+        "type": "html",
+        "id": "copyright",
+        "label": "Copyright",
+        "default": "<p>&copy; 2017 BraveBits, Inc. All Rights Reserved - from Woorockets with &hearts;</p>"
+      }
+    ]
+  }
+{% endschema %}

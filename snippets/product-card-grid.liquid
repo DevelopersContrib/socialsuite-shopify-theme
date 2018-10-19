@@ -1,0 +1,63 @@
+{% unless grid_image_width %}
+  {%- assign grid_image_width = '500x500' -%}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<div class="grid-view-item{% unless product.available %} product-price--sold-out grid-view-item--sold-out{% endunless %}">
+  <div  class="grid-view-item__image">
+    <a href="{{ product.url | within: collection }}">
+      <img src="{{ product.featured_image.src | img_url: grid_image_width }}" alt="{{ product.featured_image.alt | escape }}">
+    </a>
+    {% if sold_out %}
+      <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
+    {% endif %}
+    <div class="grid-view-item__actions">
+      <a class="grid-view-item__actions--btn quickview" href="{{ product.url | within: collection }}"><i class="fa fa-plus"></i><span>{{ 'products.product.quickview' | t }}</span></a>
+      {% if product.variants.size > 1 %}
+        <a class="add-to-cart grid-view-item__actions--btn" href="{{ product.url | within: collection }}">
+          <i class="fa fa-shopping-basket"></i><span>{{ 'products.product.add_to_cart' | t }}</span>
+        </a>
+      {% else %}
+        <a class="grid-view-item__actions--btn add-to-cart add-to-cart-ajax" href="#">
+          <i class="fa fa-shopping-basket"></i><span>{{ 'products.product.add_to_cart' | t }}</span>
+        </a>
+        <input type="hidden" class="product_quatity" value="{{ product.variants.first.id }}" />
+        <input type="hidden" class="product_stock" value="{{ product.variants.first.id }}" />
+      {% endif %}
+    </div>
+  </div>
+  <div class="grid-view-item__price">
+    <span class="grid-view-item__price--amount">
+      {% if on_sale %}
+        {% if product.price_varies %}
+          {% assign sale_price = product.price | money %}
+          {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+        {% else %}
+          {{ product.price | money }}
+        {% endif %}
+      {% else %}
+        {% if product.price_varies %}
+          {{ product.price_min | money }} - {{ product.price_max | money }}
+        {% else %}
+          {{ product.price | money }}
+        {% endif %}
+      {% endif %}
+      {% if on_sale %}
+        <del>{{ product.compare_at_price | money }}</del>
+      {% endif %}
+    </span>
+  </div>
+  <h3 class="h5 grid-view-item__title">
+    <a href="{{ product.url | within: collection }}" title="{{ product.title }}">{{ product.title }}</a>
+  </h3>
+</div>
+

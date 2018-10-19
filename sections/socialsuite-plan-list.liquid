@@ -1,0 +1,194 @@
+<div class="container">
+  <div class="section-header text-center">
+    <h2>{{ section.settings.text_header }}</h2>
+  </div>
+  <div class="price-row">
+    {%- assign plans = collections.plans -%} 
+    {% for plan in plans.products %}
+      {% case plan.title %}
+        {% when "Free Plan" %}
+          {%- assign img_src = "https://socialsuite.com/images/ss-free.png" -%}
+          {%- assign plan_id = "free_plan" -%}
+          {%- assign ul_class = "header-gray" -%}
+        {% when "Social Climber" %}
+          {%- assign img_src = "https://socialsuite.com/images/ss-climber.png" -%}
+          {%- assign plan_id = "social_climber" -%}
+          {%- assign ul_class = "header-red" -%}
+        {% when "Social Media Agent" %}
+          {%- assign img_src = "https://socialsuite.com/images/ss-agent.png" -%}
+          {%- assign plan_id = "social_media_agent" -%}
+          {%- assign ul_class = "header-green" -%}
+        {% when "Social Media Agency" %}
+          {%- assign img_src = "https://socialsuite.com/images/ss-agency.png" -%}
+          {%- assign plan_id = "social_media_agency" -%}
+          {%- assign ul_class = "header-orange" -%}	
+        {% when "Enterprise" %}
+          {%- assign img_src = "https://socialsuite.com/images/ss-enterprise.png" -%}
+          {%- assign plan_id = "enterprise" -%}
+          {%- assign ul_class = "header-blue" -%}
+      {% endcase %}
+      {% if section.settings[plan_id] == true %}
+        {% include "socialsuite-plan-loop" %}
+      {% endif %}
+    {% endfor %}
+	</div>
+</div>
+{% schema %}
+  {
+    "name": "Socialsuite plans",
+	"class": "index-section--socialplans",
+    "settings": [
+		{
+			"type": "text",
+			"id": "text_header",
+			"label": "Text Header",
+			"default": "Choose a plan that is right for you"
+		},
+		{
+			"type": "checkbox",
+			"id": "free_plan",
+			"label": "Show free plan package",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "social_climber",
+			"label": "Show social climber plan package",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "social_media_agent",
+			"label": "Show social media agent plan package",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "social_media_agency",
+			"label": "Show social media agency plan package",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "enterprise",
+			"label": "Show enterprise plan package",
+			"default": true
+		}
+	],
+	"presets": [
+		{
+          "name": "Socialsuite plans",
+          "category": "Product"
+      	}
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+.price-row {	
+	margin: auto;
+}
+.price-row .price-header {
+	text-align: center;
+	padding: 10px 0px;
+	color: white;
+	font-size: 20px;
+}
+.price-row .columns {
+	float: left;
+	width: 20%;
+	padding: 1px;
+}
+.price-row .price {
+	list-style-type: none;
+	border: 1px solid #F4F4FB;
+	margin: 0;
+	padding: 0;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+}
+
+.price-row .price:hover {
+	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+}
+
+.price-row .header-blue {
+	background-color: #662DD2;	
+}
+.price-row .header-green {
+	background-color: #63A807;	
+}
+.price-row .header-gray {
+	background-color: #00A99D;
+}
+.price-row .header-orange {
+	background-color: #D87808;
+}
+.price-row .header-red {
+	background-color: #EE2225;
+}
+.price-row .price li {
+	border-bottom: 1px solid #eee;
+	padding: 10px;
+	text-align: center;
+	font-style: initial;
+}
+.price-row .grey {
+	background-color: #F9F9F9;
+	font-size: 30px;
+	font-weight: bold;
+	color: #555;
+	text-align: center;
+	padding: 15px;
+}
+.price-row .green {
+	background-color: #83B441;
+	font-size: 20px;
+}
+.price-row .white {
+	color: #fff;
+}
+.price-row img {
+	width: 60px;
+	margin: 0 auto 10px;
+	display: table;
+}
+.price-row .button {
+	background-color: #555;
+	border: none;
+	color: white;
+	padding: 3px 12px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: normal;
+}
+.price-row .button:hover {
+	background-color: #333;
+	color: white;
+	text-decoration: none;
+}
+.price-row .button-green {
+	background: #83B441;
+	border: none;
+	color: white;
+	padding: 5px 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: normal;
+}
+.price-row .button-green:hover {
+	background: #90CE3C;
+	color: #f5f5f5;
+	text-decoration: none;
+}
+@media only screen and (max-width: 600px) {
+	.price-row .columns {
+		width: 100%;
+	}
+}	
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

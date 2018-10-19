@@ -1,0 +1,54 @@
+<div class="page-width">
+  <div class="section-header text-center">
+    <h2>{{ section.settings.title | escape }}</h2>
+    <ul class="social-ul">
+      {% for social in linklists.socials-menu.links %}
+      <li>
+        {% case social.title %}
+        	{% when 'facebook' %}
+              	<a href="{{ social.url }}" class="social-link-a"><img src="https://image.flaticon.com/icons/png/128/124/124010.png" alt="{{ social.title }}"/></a>
+        	{% when 'twitter' %}
+        		<a href="{{ social.url }}" class="social-link-a"><img src="https://image.flaticon.com/icons/png/128/124/124021.png" alt="{{ social.title }}"/></a>
+        	{% when 'linkedin' %}
+        		<a href="{{ social.url }}" class="social-link-a"><img src="https://image.flaticon.com/icons/png/128/124/124011.png" alt="{{ social.title }}"/></a>
+            {% when 'google-plus' %}
+                <a href="{{ social.url }}" class="social-link-a"><img src="https://image.flaticon.com/icons/png/128/124/124013.png" alt="{{ social.title }}"/></a>
+            {% when 'pinterest' %}
+                    <a href="{{ social.url }}" class="social-link-a"><img src="https://image.flaticon.com/icons/png/128/124/124039.png" alt="{{ social.title }}"/></a>
+            {% when 'instagram' %}
+                    <a href="{{ social.url }}" class="social-link-a"><img src="https://image.flaticon.com/icons/png/128/124/124032.png" alt="{{ social.title }}"/></a>
+        {% endcase %}
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="text-center">
+      	<a href="#" class="dark-red">{{ section.settings.btn_text }}</a>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Social-App",
+	"class": "social-app-section",
+    "settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading",
+			"default": "Social Suite is available on all of your favorite social networks and CMS"
+		},
+		{
+			"type": "text",
+			"id": "btn_text",
+			"label": "Button Text",
+			"default": "Start your free trial today"
+		}
+	],
+	"presets": [
+      	{
+          "name": "Social apps",
+          "category": "Advanced layout"
+      	}
+    ]
+  }
+{% endschema %}

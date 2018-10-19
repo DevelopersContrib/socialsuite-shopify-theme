@@ -1,0 +1,545 @@
+{
+  "current": {
+    "color_text": "#3d4246",
+    "color_body_text": "#788188",
+    "color_sale_text": "#7796a8",
+    "color_borders": "#e8e9eb",
+    "color_button": "#7796a8",
+    "color_button_text": "#fff",
+    "color_small_button": "#fff",
+    "color_small_button_text": "#3d4246",
+    "color_text_field": "#fff",
+    "color_text_field_text": "#000",
+    "color_image_overlay_text": "#fff",
+    "color_image_overlay": "#3d4246",
+    "image_overlay_opacity": "0.25",
+    "color_body_bg": "#fff",
+    "type_header_family": "Google_Work+Sans_600_sans",
+    "type_header_base_size": "26px",
+    "type_base_family": "Google_Work+Sans_400_sans",
+    "type_base_size": "14px",
+    "type_bold_product_titles": true,
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "",
+    "social_facebook_link": "",
+    "social_googleplus_link": "",
+    "social_pinterest_link": "",
+    "social_instagram_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "favicon": "",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#1990c6",
+    "checkout_button_color": "#1990c6",
+    "checkout_error_color": "#ff6d6d",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "",
+          "logo_max_width": "100",
+          "main_linklist": "main-menu",
+          "menu_icons": true,
+          "custom": "<div><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/1882\/0455\/files\/HeadBanneer1_large.jpg?v=1491377388\" alt=\"\" style=\"display: block; margin-left: auto; margin-right: auto;\"><\/div>"
+        }
+      },
+      "featured-collections": {
+        "type": "collection",
+        "settings": {
+          "title": "Popular now",
+          "collection": "",
+          "grid": "5",
+          "rows": "1",
+          "show_vendor": false,
+          "show_view_all": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1491377473769": {
+            "type": "html",
+            "settings": {
+              "heading": "",
+              "html": "<div><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/1882\/0455\/files\/niche17-logo-footer_large.png?v=1491377614\" alt=\"\"><\/div>\r\n<div>Kidoki is a heaven for kid fashion and accessories in NYC since 1990. All products are safe for your kids.<\/div>",
+              "width": "25%"
+            }
+          },
+          "1491376672100": {
+            "type": "menu",
+            "settings": {
+              "heading": "CUSTOMER SERVICE",
+              "footer_menus": "",
+              "width": "25%"
+            }
+          },
+          "1491376708733": {
+            "type": "menu",
+            "settings": {
+              "heading": "HELP",
+              "footer_menus": "",
+              "width": "25%"
+            }
+          },
+          "1491376743721": {
+            "type": "form",
+            "settings": {
+              "heading": "NEWSLETTER",
+              "content_above": "",
+              "content_below": "",
+              "action_link": "#",
+              "placeholder": "Enter your email",
+              "width": "25%"
+            }
+          }
+        },
+        "block_order": [
+          "1491377473769",
+          "1491376672100",
+          "1491376708733",
+          "1491376743721"
+        ],
+        "settings": {
+          "footer_bottom_menu": "footer",
+          "copyright": "Copyright © 2017 Shopify Themes by SellerSmith Team.\r\nAll rights reserved"
+        }
+      },
+      "topbar": {
+        "type": "topbar",
+        "blocks": {
+          "1491377850700": {
+            "type": "menu",
+            "settings": {
+              "top_menus": "",
+              "width": "33%"
+            }
+          },
+          "1491377875434": {
+            "type": "html",
+            "settings": {
+              "html": "FREE DELIVERY ON ALL ORDERS ABOVE $160",
+              "width": "33%"
+            }
+          },
+          "1491377801497": {
+            "type": "menu",
+            "settings": {
+              "top_menus": "",
+              "width": "33%"
+            }
+          }
+        },
+        "block_order": [
+          "1491377850700",
+          "1491377875434",
+          "1491377801497"
+        ],
+        "settings": {
+          "top_bar": true
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "image_size": "medium",
+          "show_quantity_selector": false,
+          "show_variant_labels": true,
+          "show_vendor": false,
+          "enable_zoom": true,
+          "show_share_buttons": true
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "layout": "grid",
+          "grid": "4",
+          "rows": "2",
+          "show_collection_image": true,
+          "show_vendor": false,
+          "sort_enable": true,
+          "tags_enable": true
+        }
+      },
+      "1491377912034": {
+        "type": "logo-bar",
+        "blocks": {
+          "1491377912034-0": {
+            "type": "logo_image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          },
+          "1491377912034-1": {
+            "type": "logo_image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          },
+          "1491377912034-2": {
+            "type": "logo_image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          },
+          "1491377912034-3": {
+            "type": "logo_image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          },
+          "1491377983845": {
+            "type": "logo_image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1491377912034-0",
+          "1491377912034-1",
+          "1491377912034-2",
+          "1491377912034-3",
+          "1491377983845"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1491378002381": {
+        "type": "image-bar",
+        "blocks": {
+          "1491378002381-0": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "alignment": "center",
+              "link": "shopify:\/\/collections\/all",
+              "cta_label": ""
+            }
+          },
+          "1491378002381-1": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "alignment": "center",
+              "link": "shopify:\/\/collections\/all",
+              "cta_label": ""
+            }
+          },
+          "1491378002381-2": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "alignment": "center",
+              "link": "shopify:\/\/collections\/all",
+              "cta_label": ""
+            }
+          }
+        },
+        "block_order": [
+          "1491378002381-0",
+          "1491378002381-1",
+          "1491378002381-2"
+        ],
+        "settings": {
+          "section_height": "small"
+        }
+      },
+      "1491378085559": {
+        "type": "custom-content",
+        "blocks": {
+          "1491378085559-0": {
+            "type": "text",
+            "settings": {
+              "title": "NEW ARRIVALS",
+              "text": "<p>SOME ITEMS WON'T BE SHOWING UP AGAIN<\/p>\r\n<p>Shop latest kid fashion items right here. Various choice for boys and girls. 30-day money back guarantee.<\/p>",
+              "width": "25%",
+              "alignment": "top-middle",
+              "align_text": "left"
+            }
+          },
+          "1491378137070": {
+            "type": "products",
+            "settings": {
+              "products": "frontpage",
+              "limit": "3",
+              "width": "75%",
+              "alignment": "center"
+            }
+          },
+          "1491379955136": {
+            "type": "html",
+            "settings": {
+              "code": "<p style=\"text-align: center;\"><a href=\"https:\/\/ss-kidoki.myshopify.com\/collections\/all\"><strong>VIEW MORE<\/strong><\/a><\/p>",
+              "width": "100%"
+            }
+          }
+        },
+        "block_order": [
+          "1491378085559-0",
+          "1491378137070",
+          "1491379955136"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1491378213364": {
+        "type": "custom-content",
+        "blocks": {
+          "1491378213364-0": {
+            "type": "text",
+            "settings": {
+              "title": "#KIDOKI4U",
+              "text": "<p>Want to show us your kid fashion?<br>Hashtag #kidoki4u on Instagram.<\/p>",
+              "width": "50%",
+              "alignment": "center",
+              "align_text": "left"
+            }
+          },
+          "1491378227767": {
+            "type": "instagram",
+            "settings": {
+              "user_id": "3627095392",
+              "access_token": "3627095392.1677ed0.1c918129b19644e68c0acd2c5ac24eeb",
+              "instagram_limit": "4",
+              "width": "50%"
+            }
+          }
+        },
+        "block_order": [
+          "1491378213364-0",
+          "1491378227767"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1491378643170": {
+        "type": "collection-list",
+        "blocks": {
+          "1491378643170-0": {
+            "type": "featured_collection",
+            "settings": {
+              "collection": ""
+            }
+          },
+          "1491378643170-1": {
+            "type": "featured_collection",
+            "settings": {
+              "collection": ""
+            }
+          },
+          "1491378643170-2": {
+            "type": "featured_collection",
+            "settings": {
+              "collection": ""
+            }
+          },
+          "1491378684001": {
+            "type": "featured_collection",
+            "settings": {
+              "collection": ""
+            }
+          }
+        },
+        "block_order": [
+          "1491378643170-0",
+          "1491378643170-1",
+          "1491378643170-2",
+          "1491378684001"
+        ],
+        "settings": {
+          "title": "",
+          "grid": "4",
+          "hide_title": false
+        }
+      },
+      "1491378780024": {
+        "type": "custom-content",
+        "blocks": {
+          "1491379476940": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "effect": "none",
+              "url": "shopify:\/\/collections\/all",
+              "width": "66%",
+              "alignment": "center"
+            }
+          },
+          "1491379420935": {
+            "type": "html",
+            "settings": {
+              "code": "<p><a href=\"https:\/\/ss-kidoki.myshopify.com\/collections\/all\" target=\"_blank\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/1882\/0455\/files\/slider-banner-01_large.png?v=1491379355\" alt=\"\"><\/a><\/p>\r\n<p><a href=\"https:\/\/ss-kidoki.myshopify.com\/collections\/all\" target=\"_blank\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/1882\/0455\/files\/slider-banner-02_large.png?v=1491379371\" alt=\"\"><\/a><\/p>\r\n<p><a href=\"https:\/\/ss-kidoki.myshopify.com\/collections\/all\" target=\"_blank\"><img src=\"\/\/cdn.shopify.com\/s\/files\/1\/1882\/0455\/files\/slider-banner-03_large.png?v=1491379385\" alt=\"\"><\/a><\/p>",
+              "width": "33%"
+            }
+          },
+          "1491379825759": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "effect": "none",
+              "url": "shopify:\/\/collections\/all",
+              "width": "100%",
+              "alignment": "top-middle"
+            }
+          }
+        },
+        "block_order": [
+          "1491379476940",
+          "1491379420935",
+          "1491379825759"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1539207079604": {
+        "type": "textonly",
+        "settings": {
+          "heading": "Subscribe to our newsletter",
+          "subtitle": "A short sentence describing what someone will receive by subscribing",
+          "show_background": true
+        }
+      },
+      "1539289352737": {
+        "type": "social-apps",
+        "settings": {
+          "title": "Social Suite is available on all of your favorite social networks and CMS",
+          "btn_text": "Start your free trial today"
+        }
+      },
+      "1539364934093": {
+        "type": "socialsuite-plan-list",
+        "settings": {
+          "text_header": "Choose a plan that is right for you",
+          "free_plan": true,
+          "social_climber": true,
+          "social_media_agent": true,
+          "social_media_agency": true,
+          "enterprise": true
+        }
+      },
+      "1539625427700": {
+        "type": "featured-video",
+        "settings": {
+          "header": "Promotional video",
+          "video_url": "https:\/\/player.vimeo.com\/video\/207561527?title=0&portrait=0&byline=0&autoplay=1"
+        }
+      }
+    },
+    "content_for_index": [
+      "1539625427700",
+      "1539364934093",
+      "1491378780024",
+      "featured-collections",
+      "1491378643170",
+      "1491378085559",
+      "1491378002381",
+      "1491377912034",
+      "1491378213364",
+      "1539207079604",
+      "1539289352737"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "color_text": "#3d4246",
+      "color_body_text": "#788188",
+      "color_sale_text": "#7796A8",
+      "color_borders": "#e8e9eb",
+      "color_button": "#7796A8",
+      "color_button_text": "#fff",
+      "color_small_button": "#fff",
+      "color_small_button_text": "#3d4246",
+      "color_text_field": "#fff",
+      "color_text_field_text": "#000",
+      "color_image_overlay_text": "#fff",
+      "color_image_overlay": "#3d4246",
+      "image_overlay_opacity": "0.25",
+      "color_body_bg": "#fff",
+      "type_header_family": "Google_Work+Sans_600_sans",
+      "type_header_base_size": "26px",
+      "type_base_family": "Google_Work+Sans_400_sans",
+      "type_base_size": "16px",
+      "type_bold_product_titles": false,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "custom": ""
+          }
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "text_size": "large"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {
+                "content": ""
+              }
+            },
+            "slideshow-1": {
+              "type": "image",
+              "settings": {
+                "content": ""
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {
+            "custom_html": ""
+          }
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "copyright": ""
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "slideshow"
+      ]
+    }
+  }
+}
