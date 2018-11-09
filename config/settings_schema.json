@@ -824,5 +824,32 @@
         "info": "Will be scaled down to 32 x 32px"
       }
     ]
+  },
+  {
+    "name": {
+      "de": "Product",
+      "en": "Product",
+      "es": "Product",
+      "fr": "Product",
+      "it": "Product",
+      "ja": "Product",
+      "pt-BR": "Product"
+    },
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_preorder",
+        "label": {
+          "de": "Enable Pre Order",
+          "en": "Enable Pre Order",
+          "es": "Enable Pre Order",
+          "fr": "Enable Pre Order",
+          "it": "Enable Pre Order",
+          "ja": "Enable Pre Order",
+          "pt-BR": "Enable Pre Order"
+        },
+        "default": true
+      }
+    ]
   }
 ]

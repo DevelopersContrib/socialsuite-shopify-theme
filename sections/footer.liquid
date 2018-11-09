@@ -1,4 +1,4 @@
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer {{ section.settings.footer_bg_color }}" role="contentinfo">
   {% if section.blocks.size > 0 %}
     <div class="site-footer__top">
       <div class="container">
@@ -404,7 +404,35 @@
         "id": "copyright",
         "label": "Copyright",
         "default": "<p>&copy; 2017 BraveBits, Inc. All Rights Reserved - from Woorockets with &hearts;</p>"
-      }
+      },
+	  {
+        "type": "select",
+        "id": "footer_bg_color",
+        "label": "Background color",
+        "default": "site-footer-bg-red",
+        "options": [
+          {
+            "value": "site-footer-bg-skyblue",
+            "label": "skyblue"
+          },
+          {
+            "value": "site-footer-bg-black",
+            "label": "black"
+          },
+          {
+            "value": "site-footer-bg-red",
+            "label": "red"
+          },
+          {
+            "value": "site-footer-bg-gray",
+            "label": "gray"
+          },
+          {
+            "value": "site-footer-bg-green",
+            "label": "green"
+          }
+        ]
+	  }
     ]
   }
 {% endschema %}

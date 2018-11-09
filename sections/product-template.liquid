@@ -114,54 +114,170 @@
               </span>
             {% endif %}
           </p>
+		  
+		{% if settings.enable_preorder == true %}
+			{% if product.available %}
+				<form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="{{ section.id }}">
+					{% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+					  {% for option in product.options_with_values %}
+						<div class="selector-wrapper js product-form__item">
+						  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+							{{ option.name }}
+						  </label>
+						  <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+							{% for value in option.values %}
+							  <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+							{% endfor %}
+						  </select>
+						</div>
+					  {% endfor %}
+					{% endunless %}
 
-          <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="{{ section.id }}">
-            {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-              {% for option in product.options_with_values %}
-                <div class="selector-wrapper js product-form__item">
-                  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
-                    {{ option.name }}
-                  </label>
-                  <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
-                    {% for value in option.values %}
-                      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
-                    {% endfor %}
-                  </select>
-                </div>
-              {% endfor %}
-            {% endunless %}
+					<select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants no-js">
+					  {% for variant in product.variants %}
+						  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+							{{ variant.title }}
+						  </option>
+					  {% endfor %}
+					</select>
 
-            <select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants no-js">
-              {% for variant in product.variants %}
-                {% if variant.available %}
-                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
-                    {{ variant.title }}
-                  </option>
-                {% else %}
-                  <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-                {% endif %}
-              {% endfor %}
-            </select>
+					{% if section.settings.show_quantity_selector %}
+					  <div class="product-form__item product-form__item--quantity">
+						<label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+						<input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*">
+					  </div>
+					{% endif %}
 
-            {% if section.settings.show_quantity_selector %}
-              <div class="product-form__item product-form__item--quantity">
-                <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                <input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*">
-              </div>
-            {% endif %}
+					<div class="product-form__item product-form__item--submit">
+						{% unless current_variant.available %}
+							<button style="display:none;" type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+								<span id="AddToCartText-{{ section.id }}">
+									{{ 'products.product.add_to_cart' | t }}
+								</span>
+							  </button>
+							  
+							  <button  type="submit" name="add" id="addpreorder" class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+								<span>
+								  Pre Order
+								</span>
+							  </button>
+							  
+						{% else %}
+							<button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+								<span id="AddToCartText-{{ section.id }}">
+								  {% unless current_variant.available %}
+									{{ 'products.product.sold_out' | t }}
+								  {% else %}
+									{{ 'products.product.add_to_cart' | t }}
+								  {% endunless %}
+								</span>
+							  </button>
+							  
+								
+							  <button style="display:none;" type="submit" name="add" id="addpreorder" class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+								<span>
+								  Pre Order
+								</span>
+							  </button>
+						{% endunless %}
+						
+							
+						
+					</div>
+				</form>
+			{% else %}
+				<form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="{{ section.id }}">
+					{% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+					  {% for option in product.options_with_values %}
+						<div class="selector-wrapper js product-form__item">
+						  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+							{{ option.name }}
+						  </label>
+						  <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+							{% for value in option.values %}
+							  <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+							{% endfor %}
+						  </select>
+						</div>
+					  {% endfor %}
+					{% endunless %}
 
-            <div class="product-form__item product-form__item--submit">
-              <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
-                <span id="AddToCartText-{{ section.id }}">
-                  {% unless current_variant.available %}
-                    {{ 'products.product.sold_out' | t }}
-                  {% else %}
-                    {{ 'products.product.add_to_cart' | t }}
-                  {% endunless %}
-                </span>
-              </button>
-            </div>
-          </form>
+					<select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants no-js">
+					  {% for variant in product.variants %}
+						  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+							{{ variant.title }}
+						  </option>
+					  {% endfor %}
+					</select>
+
+					{% if section.settings.show_quantity_selector %}
+					  <div class="product-form__item product-form__item--quantity">
+						<label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+						<input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*">
+					  </div>
+					{% endif %}
+
+					<div class="product-form__item product-form__item--submit">
+					  <button type="submit" name="add" id="addpreorder" class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+						<span id="AddToCartText-{{ section.id }}">
+						  Pre Order
+						</span>
+					  </button>
+					</div>
+				</form>
+			{% endif %}
+		{% else %}
+			<form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="{{ section.id }}">
+				{% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+				  {% for option in product.options_with_values %}
+					<div class="selector-wrapper js product-form__item">
+					  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+						{{ option.name }}
+					  </label>
+					  <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+						{% for value in option.values %}
+						  <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+						{% endfor %}
+					  </select>
+					</div>
+				  {% endfor %}
+				{% endunless %}
+
+				<select name="id" id="ProductSelect-{{ section.id }}" data-section="{{ section.id }}" class="product-form__variants no-js">
+				  {% for variant in product.variants %}
+					{% if variant.available %}
+					  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+						{{ variant.title }}
+					  </option>
+					{% else %}
+					  <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+					{% endif %}
+				  {% endfor %}
+				</select>
+
+				{% if section.settings.show_quantity_selector %}
+				  <div class="product-form__item product-form__item--quantity">
+					<label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+					<input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*">
+				  </div>
+				{% endif %}
+
+				<div class="product-form__item product-form__item--submit">
+				  <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+					<span id="AddToCartText-{{ section.id }}">
+					  {% unless current_variant.available %}
+						{{ 'products.product.sold_out' | t }}
+					  {% else %}
+						{{ 'products.product.add_to_cart' | t }}
+					  {% endunless %}
+					</span>
+				  </button>
+				</div>
+			</form>
+		{% endif %}
+		  
+
+          
 
         </div>
 
@@ -190,6 +306,49 @@
   <script type="application/json" id="ProductJson-{{ section.id }}">
     {{ product | json }}
   </script>
+  
+  
+	{% if settings.enable_preorder == true %}
+		<script type="text/javascript">
+			 // Inspect the array of MutationRecord objects to identify the nature of the change
+			function mutationObjectCallback(mutationRecordsList) {
+				console.log('mutationObjectCallback'); 
+			  mutationRecordsList.forEach(function(mutationRecord) {
+				if(
+					//mutationRecord.target.textContent=="{{ 'products.product.unavailable' | t }}" || 
+					mutationRecord.target.textContent=="{{ 'products.product.sold_out' | t }}"){
+					document.getElementById("AddToCart-{{ section.id }}").style.display  = "none";
+					document.getElementById("addpreorder").style.display  = "block";
+				}else{
+					document.getElementById("addpreorder").style.display  = "none";
+					document.getElementById("AddToCart-{{ section.id }}").style.display  = "block";
+				}
+				
+				if ("attributes" === mutationRecord.type) {
+				  console.log("Old attribute value: " + mutationRecord.oldValue);
+				}
+				
+			  });
+			}
+			  
+			// Create an observer object and assign a callback function
+			var observerObject = new MutationObserver(mutationObjectCallback);
+
+			  // the target to watch, this could be #yourUniqueDiv 
+			  // we use the body to watch for changes
+			var targetObject = document.getElementById("AddToCartText-{{ section.id }}");
+			  
+			// Register the target node to observe and specify which DOM changes to watch			  
+			observerObject.observe(targetObject, { 
+			  attributes: true,
+			  attributeFilter: ["id", "dir"],
+			  attributeOldValue: true,
+			  childList: true
+			});
+
+		</script>
+	{% endif %}
+  
 {% endunless %}
 
 {% schema %}

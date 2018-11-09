@@ -30,6 +30,7 @@
     "social_tumblr_link": "",
     "social_youtube_link": "",
     "favicon": "",
+    "enable_preorder": true,
     "checkout_header_image": "",
     "checkout_logo_image": "",
     "checkout_logo_position": "left",
@@ -113,7 +114,8 @@
         ],
         "settings": {
           "footer_bottom_menu": "footer",
-          "copyright": "Copyright © 2017 Shopify Themes by SellerSmith Team.\r\nAll rights reserved"
+          "copyright": "Copyright © 2017 Shopify Themes by SellerSmith Team.\r\nAll rights reserved",
+          "footer_bg_color": "site-footer-bg-red"
         }
       },
       "topbar": {
@@ -147,7 +149,8 @@
           "1491377801497"
         ],
         "settings": {
-          "top_bar": true
+          "top_bar": true,
+          "topbar_bg_color": "topbar-bg-skyblue"
         }
       },
       "product-template": {

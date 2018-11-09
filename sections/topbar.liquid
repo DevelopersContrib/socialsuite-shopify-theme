@@ -1,5 +1,5 @@
 {% if section.settings.top_bar %}
-  <div class="topbar">
+  <div class="topbar {{ section.settings.topbar_bg_color }}">
     <div class="container">
       <div class="grid">
         {% if section.settings.top_bar %}
@@ -64,7 +64,35 @@
         "id": "top_bar",
         "label": "Top bar",
         "default": true
-      }
+      },
+	  {
+		"type": "select",
+		"id": "topbar_bg_color",
+		"label": "Background color",
+		"default": "topbar-bg-black",
+		"options": [
+		  {
+            "value": "topbar-bg-skyblue",
+            "label": "skyblue"
+          },
+          {
+            "value": "topbar-bg-black",
+            "label": "black"
+          },
+          {
+            "value": "topbar-bg-red",
+            "label": "red"
+          },
+          {
+            "value": "topbar-bg-gray",
+            "label": "gray"
+          },
+          {
+            "value": "topbar-bg-green",
+            "label": "green"
+          }
+   		]
+	  }
     ],
     "blocks": [
       {
